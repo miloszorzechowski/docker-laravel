@@ -14,18 +14,22 @@ services:
     build:
       context: ./php
       dockerfile: Dockerfile
+    container_name: php
     volumes:
-      - ./src:/var/www/html
+      - ./src:/var/www
     networks:
       - internal
+    depends_on:
+      - nginx
   nginx:
     image: nginx:1.25.2
     container_name: nginx
     ports:
       - "80:80"
+      - "8000:8000"
       - "443:443"
     volumes:
-        - ./src:/var/www/html
+        - ./src:/var/www
         - ./nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - internal
