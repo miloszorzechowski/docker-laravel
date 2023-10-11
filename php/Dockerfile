@@ -10,6 +10,3 @@ RUN docker-php-ext-install bcmath ctype fileinfo json mbstring pdo tokenizer xml
 
 # Install Composer so it's available
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-WORKDIR /var/www
-RUN composer create-project laravel/laravel example-app
